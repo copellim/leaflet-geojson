@@ -1,27 +1,57 @@
-# MapSample
+# Angular Leaflet Example
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+This is a sample Angular project that demonstrates the integration of Leaflet, a popular JavaScript mapping library, into an Angular application. These are the major steps taken to obtain the code in this repo.
 
-## Development server
+## Prerequisites
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Node.js](https://nodejs.org/) installed on your machine
+- [Angular CLI](https://angular.io/cli) installed globally (`npm install -g @angular/cli`)
 
-## Code scaffolding
+## Installation
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+1. Create new project
 
-## Build
+   ```bash
+   ng new <project-name>
+   ```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Navigate to the project directory.
 
-## Running unit tests
+   ```bash
+   cd <project-name>
+   ```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Install Leaflet and its type definitions.
 
-## Running end-to-end tests
+   ```bash
+   npm install leaflet@1.7.1
+   npm install --save-dev @types/leaflet @types/geojson
+   ```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+4. Add Leaflet CSS to your Angular project. Open the `angular.json` file and add the following entry under `architect.build.options.styles`:
 
-## Further help
+   ```json
+   {
+     // ...
+     "styles": [
+       "./node_modules/leaflet/dist/leaflet.css",
+       "src/styles.css"
+     ],
+     // ...
+   }
+   ```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+5. Add GeoJSON data to the project. Create a `tracks.geojson` file under `src/assets/data/` directory and add your GeoJSON data to this file.
+
+## Running the Application
+
+To run the Angular development server and view the Leaflet features in action, use the following command:
+
+```bash
+npm start
+```
+
+This will start the development server. Open your browser and navigate to `http://localhost:4200/` to view the Angular Leaflet Example application.
+
+
+Happy mapping! 🗺️
