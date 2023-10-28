@@ -16,6 +16,7 @@ import { FeatureService } from './services/feature.service';
 export class MapComponent implements AfterViewInit, OnDestroy {
   @Input() features: Observable<GeoJsonObject[]> | null = null;
   private destroy$: Subject<void> = new Subject<void>();
+  private osmMap = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
   private map: Map | null = null;
 
@@ -25,15 +26,12 @@ export class MapComponent implements AfterViewInit, OnDestroy {
       zoom: 11,
     });
 
-    const tiles = tileLayer(
-      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-      {
-        maxZoom: 18,
-        minZoom: 3,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }
-    );
+    const tiles = tileLayer(this.osmMap, {
+      maxZoom: 18,
+      minZoom: 3,
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    });
 
     tiles.addTo(this.map);
   }
